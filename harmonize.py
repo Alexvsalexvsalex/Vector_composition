@@ -10,8 +10,8 @@ from PIL import Image
 
 URL = "http://109.188.135.85:9333/harmonize"
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
-DATASETS_DIR = os.path.join(CUR_DIR, 'result')
-RESULT_DIR = os.path.join(CUR_DIR, 'harmonized')
+DATASETS_DIR = os.path.join(CUR_DIR, 'result2')
+RESULT_DIR = os.path.join(CUR_DIR, 'harmonized2')
 
 
 def make_query(bg, fg):

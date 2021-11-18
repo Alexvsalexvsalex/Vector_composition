@@ -7,8 +7,8 @@ import traceback
 from utils import read_image
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
-DATASETS_DIR = os.path.join(CUR_DIR, 'datasets')
-RESULT_DIR = os.path.join(CUR_DIR, 'result')
+DATASETS_DIR = os.path.join(CUR_DIR, 'png')
+RESULT_DIR = os.path.join(CUR_DIR, 'result2')
 IMAGE_SIZE = (1000, 1000)
 
 
@@ -23,7 +23,7 @@ def del_from_image(image, mask):
 
 
 def read_resized(image_path):
-    original_image = Image.fromarray(read_image(image_path))
+    original_image = Image.fromarray(read_image(image_path)).convert('RGB')
     original_image.thumbnail(IMAGE_SIZE)
     return np.array(original_image)
 
