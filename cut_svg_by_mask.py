@@ -11,7 +11,7 @@ from utils import read_image
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 SVG_DIR = os.path.join(CUR_DIR, 'svg')
 CUT_SVG_DIR = os.path.join(CUR_DIR, 'svg_cut')
-MASKS_DIR = os.path.join(CUR_DIR, 'masks')
+MASK_PATHS_DIR = os.path.join(CUR_DIR, 'mask_paths')
 
 
 if __name__ == '__main__':
@@ -27,7 +27,7 @@ if __name__ == '__main__':
         Path(dataset_cut_in_svg_path).mkdir(parents=True, exist_ok=True)
         Path(dataset_cut_out_svg_path).mkdir(parents=True, exist_ok=True)
 
-        dataset_mask_path = os.path.join(MASKS_DIR, dataset)
+        dataset_mask_path = os.path.join(MASK_PATHS_DIR, dataset)
 
         image_names = os.listdir(dataset_vect_path)
 
@@ -50,7 +50,10 @@ if __name__ == '__main__':
                 out_paths = []
                 out_attrs = []
                 for i in range(len(paths)):
-                    if paths[i].is_contained_by(mask_paths[0]):
+                    inside = False
+                    for mask_path in mask_paths:
+                        inside = inside or paths[i].is_contained_by(mask_path)
+                    if inside:
                         in_paths.append(paths[i])
                         in_attrs.append(attributes[i])
                         # in_svg_attrs.append(svg_attributes[i])

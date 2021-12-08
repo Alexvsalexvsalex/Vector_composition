@@ -53,7 +53,7 @@ def random_colour_masks(image):
     return coloured_mask
 
 
-def instance_segmentation_api(img_path, threshold=0.2, rect_th=3, text_size=3, text_th=3) -> Image:
+def instance_segmentation_api(img_path, threshold=0.15, rect_th=3, text_size=3, text_th=3) -> Image:
     masks, boxes, pred_cls = get_prediction(img_path, threshold)
     img = cv2.imread(img_path)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -102,9 +102,9 @@ if __name__ == '__main__':
 
             try:
                 run_rasterize(image_path, img_result_path)
-                image = instance_segmentation_api(img_result_path)
+                # image = instance_segmentation_api(img_result_path)
 
-                Image.fromarray(image, 'RGB').save(img_mask_path)
+                # Image.fromarray(image, 'RGB').save(img_mask_path)
 
                 print(f"DONE {image_path}")
             except Exception as e:
